@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build outputs
+dist/
+build/
+client/build/
+server/build/
+
+# Environment variables
+.env
+client/.env
+server/.env
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Misc
+npm-debug.log*
+yarn-error.log
+package-lock.json
+yarn.lock
+
+node_modules/
+.env
+dist/
+build/
+*.log
