@@ -1,5 +1,3 @@
-/* client/src/App.css */
-
 body {
   margin: 0;
   padding: 0;
@@ -58,14 +56,17 @@ body {
   flex: 1;
 }
 
-.main-content .header {
+.dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
 }
 
-.header input[type="text"] {
+.header-left input[type="text"],
+.header-right input[type="text"] {
   padding: 8px 12px;
   width: 300px;
   border: 1px solid #ddd;
@@ -73,8 +74,72 @@ body {
   font-size: 1rem;
 }
 
-.header .profile-dropdown {
-  position: relative;
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.add-meeting-btn {
+  background-color: #6B46C1;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-meeting-btn span {
+  font-size: 1.2rem;
+  line-height: 0.8;
+}
+
+.meeting-form,
+.meeting-details form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.meeting-form input,
+.meeting-form select,
+.meeting-details input,
+.meeting-details select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filter-tabs button {
+  background: none;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: #6B46C1;
+  font-weight: bold;
+  margin-right: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.filter-tabs button.active {
+  background-color: transparent;
+  color: #6B46C1;
+  border-bottom: 2px solid #6B46C1;
+}
+
+.count {
+  background-color: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 5px;
 }
 
 .profile-dropdown {
@@ -92,7 +157,6 @@ body {
 }
 
 .profile-dropdown ul {
-  display: block; /* Changed from none to block when isOpen is true */
   position: absolute;
   right: 0;
   background-color: #fff;
@@ -102,7 +166,7 @@ body {
   list-style: none;
   padding: 5px 0;
   min-width: 150px;
-  z-index: 1000; /* Ensure it stays above other elements */
+  z-index: 1000;
 }
 
 .profile-dropdown ul li {
@@ -114,7 +178,6 @@ body {
   background-color: #f1f3f5;
 }
 
-/* Table Styling for Buyer Meeting */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -124,7 +187,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   border-bottom: 1px solid #eee;
   text-align: left;
@@ -148,9 +212,30 @@ tr:hover {
   background-color: #e9ecef;
 }
 
-/* Status Badges */
 .status-completed {
   background-color: #28a745;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 0.9rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.status-draft {
+  background-color: #17a2b8;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 0.9rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.status-archive {
+  background-color: #6c757d;
   color: #fff;
   padding: 4px 8px;
   border-radius: 12px;
@@ -182,7 +267,6 @@ tr:hover {
   min-width: 80px;
 }
 
-/* Buttons */
 button {
   background-color: #6B46C1;
   color: #fff;
@@ -197,65 +281,73 @@ button:hover {
   background-color: #553c9a;
 }
 
-.meeting-list button {
-  margin-right: 10px;
-}
-
-/* Notifications and Chat Panels */
-.notifications, .chat, .action-items {
-  background-color: #fff;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.notifications h4, .chat h4, .action-items h4 {
-  color: #6B46C1;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.notifications ul, .chat ul {
-  list-style: none;
+.action-dot {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
   padding: 0;
+  color: #6B46C1;
 }
 
-.notifications ul li, .chat ul li {
-  padding: 5px 0;
-  color: #666;
-}
-
-.action-items table {
-  margin-top: 10px;
-}
-
-/* Full View Styles */
-.notifications.full-view ul, .chat.full-view ul {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-
-/* hdsjfhiufdhndklmfd */
-
-
-.meeting-details {
-  margin-top: 20px;
-  padding: 15px;
+.action-menu {
+  position: absolute;
   background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.meeting-details form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.meeting-details input, .meeting-details select {
-  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  right: 0;
+  min-width: 100px;
+  padding: 5px 0;
+}
+
+.action-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.action-menu button:hover {
+  background-color: #f1f3f5;
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #e9ecef;
+  margin-top: 20px;
+}
+
+.pagination-right button {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  margin: 0 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #333;
+}
+
+.pagination-right button.active {
+  background-color: #6B46C1;
+  color: #fff;
+}
+
+.pagination-right button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px; /* Adjust space as needed */
+  margin-bottom: 10px;
 }

@@ -5,6 +5,7 @@ function ActionItems({ actionItems, fetchActionItems }) {
   const [selectedAction, setSelectedAction] = useState(null);
   const [editAction, setEditAction] = useState(null);
   const [formData, setFormData] = useState({ title: '', status: 'In Progress', dueDate: new Date().toISOString().split('T')[0], assignedTo: '' });
+  const [actionMenu, setActionMenu] = useState(null);
 
   const handleView = (action) => setSelectedAction(action);
   const handleEdit = (action) => {
@@ -58,9 +59,22 @@ function ActionItems({ actionItems, fetchActionItems }) {
               <td>{new Date(action.dueDate).toLocaleDateString()}</td>
               <td>{action.assignedTo}</td>
               <td>
-                <button onClick={() => handleView(action)}>View</button>
-                <button onClick={() => handleEdit(action)}>Edit</button>
-                <button onClick={() => handleDelete(action._id)}>Delete</button>
+                <button
+                  className="action-dot"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActionMenu(actionMenu === action._id ? null : action._id);
+                  }}
+                >
+                  ⋮
+                </button>
+                {actionMenu === action._id && (
+                  <div className="action-menu">
+                    <button onClick={() => { handleView(action); setActionMenu(null); }}>View</button>
+                    <button onClick={() => { handleEdit(action); setActionMenu(null); }}>Edit</button>
+                    <button onClick={() => { handleDelete(action._id); setActionMenu(null); }}>Delete</button>
+                  </div>
+                )}
               </td>
             </tr>
           ))}
@@ -113,9 +127,6 @@ function ActionItems({ actionItems, fetchActionItems }) {
             </div>
           )}
         </div>
-      )}
-      {!editAction && (
-        <button onClick={() => setEditAction({})}>Add New Action Item</button>
       )}
     </div>
   );
